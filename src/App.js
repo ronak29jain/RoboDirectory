@@ -1,25 +1,51 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {Component} from "react";
+import Searchbox from "./Searchbox";
+import CardList from "./CardList";
+import { directory } from "./directory";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+class App extends Component {
+    constructor() { 
+        super()
+        this.state = {
+            directory: directory,
+            searchfield: "",
+        }
+    }
+
+    whenISearch = (event) => {
+        this.setState({searchfield: event.target.value})
+    }
+
+    render() {
+        const filteredDirectory = this.state.directory.filter(directory => {
+            return directory.name.toLocaleLowerCase().includes(this.state.searchfield.toLocaleLowerCase())
+        })
+        return (
+            <div className="tc">
+                <h1>RoboDirectory</h1>
+                <Searchbox searchChange = { this.whenISearch }/>
+                <CardList directory = { filteredDirectory }/>
+            </div>
+        )
+    }
 }
+
+
+
+
+
+
+
+// const App = () => {
+//     return (
+//         <div className="tc">
+//             <h1>RoboDirectory</h1>
+//             <Searchbox />
+//             <CardList directory={ directory }/>
+//         </div>
+//     )
+// }
+
 
 export default App;
