@@ -5,7 +5,6 @@ const CardList = ({ directory }) => {
     const cardcomponent = directory.map((user, i) => {
         return (<Card 
             key={i} 
-            id = {directory[i].id} 
             name = {directory[i].name} 
             phone = {directory[i].phone} 
             email = {directory[i].email}/>);

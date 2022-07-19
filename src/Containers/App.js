@@ -36,9 +36,9 @@ class App extends Component {
             <h1>loading</h1> :
         (
             <div className="tc">
-                <h1>RoboDirectory</h1>
+                <h1 style={{fontSize: "3rem"}}>RoboDirectory</h1>
                 <Searchbox searchChange = { this.whenISearch }/>
-                <Scroll>
+                <Scroll> 
                     <CardList directory = { filteredDirectory }/>
                 </Scroll>
             </div>
